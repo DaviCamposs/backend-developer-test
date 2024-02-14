@@ -32,4 +32,18 @@ export class Job {
         }
     }
 
+    archive() {
+        this._status = 'archived'
+    }
+
+    update(title: string, description: string, location: string, status: string, company_id: string) {
+        this._title = title
+        this._description = description
+        this._location = location
+        this._status = status
+        this._company_id = company_id
+
+        this.validate()
+    }
+
 }
