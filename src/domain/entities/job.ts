@@ -36,6 +36,10 @@ export class Job {
         this._status = 'archived'
     }
 
+    isPossiblePost() {
+        return this._status === 'posted'
+    }
+
     update(title: string, description: string, location: string, status: string, company_id: string) {
         this._title = title
         this._description = description
