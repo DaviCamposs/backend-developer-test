@@ -21,7 +21,7 @@ export class CreateJobController implements Controller {
         message: "Job created",
       });
     } catch (error: unknown) {
-      handleRequestError(error, request);
+      return handleRequestError(error, request);
     }
   }
 }

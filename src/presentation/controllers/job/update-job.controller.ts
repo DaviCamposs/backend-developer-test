@@ -20,7 +20,7 @@ export class UpdateJobController implements Controller {
 
       return noContent();
     } catch (error: unknown) {
-      handleRequestError(error, request);
+      return handleRequestError(error, request);
     }
   }
 }

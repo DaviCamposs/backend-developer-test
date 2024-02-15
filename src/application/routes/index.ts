@@ -1,5 +1,4 @@
-import companyRoutes from './company,routes'
+import companyRoutes from "./company.routes";
+import jobRoutes from "./job.routes";
 
-export {
-    companyRoutes
-}
+export { companyRoutes, jobRoutes };
