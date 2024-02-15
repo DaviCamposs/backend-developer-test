@@ -13,7 +13,7 @@ export class FindAllCompanyController implements Controller {
 
       return ok(results);
     } catch (error: unknown) {
-      handleRequestError(error, request);
+      return handleRequestError(error, request);
     }
   }
 }

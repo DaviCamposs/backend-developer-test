@@ -15,7 +15,7 @@ export class FindOneCompanyController implements Controller {
 
       return ok(result);
     } catch (error: unknown) {
-      handleRequestError(error, request);
+      return handleRequestError(error, request);
     }
   }
 }
