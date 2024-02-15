@@ -23,3 +23,13 @@ export const ok = (data?: unknown): IHttpResponse => ({
     statusCode: 200,
     body: data,
 });
+
+export const created = (data: Record<string, unknown> | Record<string, unknown>[]): IHttpResponse => ({
+    statusCode: 201,
+    body: data,
+});
+
+export const noContent = (): IHttpResponse => ({
+    statusCode: 204,
+    body: null,
+});
