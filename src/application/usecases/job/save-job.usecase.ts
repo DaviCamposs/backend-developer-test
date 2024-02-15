@@ -13,11 +13,13 @@ export class SaveJobUseCaseImpl implements ISaveJobUseCase {
     company_id: string;
   }): Promise<void> {
     const job = new Job(
+      '1',
       data.title,
       data.description,
       data.location,
       data.status,
-      data.company_id
+      data.company_id,
+      '',''
     );
 
     await this._jobRepository.save(job);
