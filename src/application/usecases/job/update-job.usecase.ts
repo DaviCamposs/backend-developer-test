@@ -23,8 +23,6 @@ export class UpdateJobUseCaseImpl implements IUpdateJobUseCase {
       data.title,
       data.description,
       data.location,
-      data.status,
-      data.company_id
     );
 
     await this._jobRepository.update(job);

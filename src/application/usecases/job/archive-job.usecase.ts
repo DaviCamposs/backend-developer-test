@@ -9,7 +9,7 @@ export class ArchiveJobUseCaseImpl implements IArchiveJobUseCase {
     async execute(id: string): Promise<void> {
         const job = await this._jobRepository.findOne(id);
 
-        if (!job) throw new NotFoundError(`Job with id:${id} not found`);
+        if (!job) throw new NotFoundError(`Job with id: ${id} not found`);
     
         job.archive()
 

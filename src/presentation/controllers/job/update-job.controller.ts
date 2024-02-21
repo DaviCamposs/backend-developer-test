@@ -14,8 +14,6 @@ export class UpdateJobController implements Controller {
         title,
         description,
         location,
-        status,
-        company_id,
       });
 
       return noContent();

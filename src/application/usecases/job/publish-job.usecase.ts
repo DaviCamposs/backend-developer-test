@@ -10,7 +10,7 @@ export class PublishJobUseCaseImpl implements IPublishJobUseCase {
 
     if (!job) throw new NotFoundError(`Job with id:${id} not found`);
 
-    if (!job.isPossiblePost())
+    if (!job.isPossiblePublish())
         throw new InvalidOperationError('It is not possible re-post a job')
   }
 }

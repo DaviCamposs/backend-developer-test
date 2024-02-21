@@ -9,13 +9,12 @@ export class CreateJobController implements Controller {
     try {
       const { title, description, location, status, company_id } = request.body;
 
-      await this._saveJobUseCase.execute({
+      await this._saveJobUseCase.execute(
         title,
         description,
         location,
-        status,
         company_id,
-      });
+      );
 
       return created({
         message: "Job created",

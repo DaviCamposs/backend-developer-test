@@ -3,6 +3,9 @@ import { ICompanyRepository } from "../../../domain/repositories"
 import { IFindAllCompanyUseCase } from "../../../domain/usecases"
 import { FindAllCompanyUseCaseImpl } from "./find-all-company.usecase"
 
+const VALID_UUID = "123e4567-e89b-12d3-a456-426614174000";
+const VALID_UUID_2 = "a2861d60-7790-4a3d-985b-48c314a843f8";
+
 interface SutTypes {
     companyRepository: ICompanyRepository
     sut: IFindAllCompanyUseCase
@@ -27,8 +30,8 @@ describe('FindAllCompanyUseCaseImpl unit tests', () => {
         // Arrange
         const { sut , companyRepository } = makeSut()
         const validResults: Company[] = [
-            new Company('company 1'),
-            new Company('company 2')
+            new Company(VALID_UUID,'company 1', 'created_at','updated_at'),
+            new Company(VALID_UUID_2,'company 2', 'created_at','updated_at'),
         ]
         const companyRepositorySpy = jest.spyOn(companyRepository,'findAll').mockResolvedValue(validResults)
 

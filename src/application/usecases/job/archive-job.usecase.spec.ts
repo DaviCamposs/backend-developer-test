@@ -1,8 +1,12 @@
 import { Job } from "../../../domain/entities";
+import { JobStatus } from "../../../domain/entities/enums";
 import { NotFoundError } from "../../../domain/errors";
 import { IJobRepository } from "../../../domain/repositories";
 import { IArchiveJobUseCase } from "../../../domain/usecases";
 import { ArchiveJobUseCaseImpl } from "./archive-job.usecase";
+
+const VALID_UUID = "123e4567-e89b-12d3-a456-426614174000";
+const VALID_UUID_2 = "a2861d60-7790-4a3d-985b-48c314a843f8";
 
 interface SutTypes {
   jobRepository: IJobRepository;
@@ -33,8 +37,8 @@ describe("ArchiveJobUseCaseImpl unit tests", () => {
     jest.spyOn(jobRepository, "findOne").mockResolvedValue(null);
 
     // Assert
-    expect(sut.execute("123")).rejects.toThrow(
-      new NotFoundError("Job with id:123 not found")
+    expect(sut.execute(VALID_UUID)).rejects.toThrow(
+      new NotFoundError(`Job with id: ${VALID_UUID} not found`)
     );
   });
 
@@ -43,25 +47,31 @@ describe("ArchiveJobUseCaseImpl unit tests", () => {
     const { sut, jobRepository } = makeSut();
 
     const jobToRemove = new Job(
-      "title",
-      "description",
-      "location",
-      "status",
-      "567"
+      "job title",
+      "job description",
+      "some location",
+      VALID_UUID_2,
+      JobStatus.PUBLISHED,
+      VALID_UUID,
+      "created_at",
+      "updated_at"
     );
     jest.spyOn(jobRepository, "findOne").mockResolvedValue(jobToRemove);
 
     // Act
-    await sut.execute("123");
+    await sut.execute(VALID_UUID);
 
     // Behaviors
     expect(jobRepository.update).toHaveBeenCalledWith(
       expect.objectContaining({
-        _company_id: "567",
-        _description: "description",
-        _location: "location",
+        _id: VALID_UUID,
+        _company_id: VALID_UUID_2,
+        _description: "job description",
+        _location: "some location",
         _status: "archived",
-        _title: "title",
+        _title: "job title",
+        _created_at: "created_at",
+        _updated_at: "updated_at",
       })
     );
   });
